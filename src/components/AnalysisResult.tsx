@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { generateAnalysisPDF } from '../utils/pdfGenerator'
 
 const AnalysisResult = () => {
   const navigate = useNavigate()
@@ -44,7 +45,8 @@ const AnalysisResult = () => {
         id: 3,
         name: "Sentencia 789/2021 - Tribunal Superior",
         similarity: 72,
-        relevance: "Precedente sobre cálculo de indemnizaciones por incumplimiento contractual"
+        summary: "Cálculo de indemnizaciones en casos de incumplimiento",
+        relevance: "Establece metodología para cuantificar daños y perjuicios derivados del incumplimiento contractual"
       }
     ],
     strategies: [
@@ -92,6 +94,10 @@ const AnalysisResult = () => {
         recommendation: "Opción viable"
       }
     ]
+  }
+
+  const handleExportPDF = () => {
+    generateAnalysisPDF(mockData)
   }
 
   return (
@@ -293,7 +299,10 @@ const AnalysisResult = () => {
           >
             Volver al Dashboard
           </button>
-          <button className="px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-lg font-semibold transition-colors shadow-lg hover:shadow-xl">
+          <button 
+            onClick={handleExportPDF}
+            className="px-6 py-3 bg-blue-700 hover:bg-blue-800 text-white rounded-lg font-semibold transition-colors shadow-lg hover:shadow-xl"
+          >
             Exportar PDF
           </button>
         </div>

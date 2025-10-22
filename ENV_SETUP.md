@@ -1,33 +1,40 @@
 # Configuración de Variables de Entorno
 
-Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+## Instalación Rápida
 
-```env
-# API Backend (Laravel)
-VITE_API_URL=http://localhost:8000/api
+```bash
+# 1. Copiar archivo de ejemplo
+cp .env.example .env
 
-# Supabase
-VITE_SUPABASE_URL=tu_supabase_url
-VITE_SUPABASE_ANON_KEY=tu_supabase_anon_key
+# 2. Editar .env con tus credenciales
+# 3. Iniciar servidor
+npm run dev
 ```
 
-## Instrucciones:
+## Variables Requeridas
 
-1. **VITE_API_URL**: URL base de tu API de Laravel (por defecto: `http://localhost:8000/api`)
-2. **VITE_SUPABASE_URL**: URL de tu proyecto en Supabase
-3. **VITE_SUPABASE_ANON_KEY**: Clave anónima de tu proyecto en Supabase
+### Backend Laravel
+```env
+VITE_API_URL=http://localhost:8000/api
+```
 
-## Endpoints Pendientes:
+### Supabase
 
-### Autenticación
+1. Ve a [supabase.com](https://supabase.com) → Tu Proyecto → Settings → API
+2. Copia las credenciales:
 
-- **POST** `/register` - Registro de usuarios
-  - Body: `{ name, email, password, password_confirmation }`
-  - Response: `{ token, user }`
+```env
+VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
 
-- **POST** `/login` - Inicio de sesión
-  - Body: `{ email, password }`
-  - Response: `{ token, user }`
+> ⚠️ Usa solo la `ANON_KEY`, nunca la `SERVICE_ROLE_KEY` en el frontend.
 
-Cuando los endpoints estén disponibles, simplemente asegúrate de que coincidan con estos formatos o actualiza los archivos en `src/forms/`.
+## Solución de Problemas
 
+**Error: "Network Error"**
+- Verifica que Laravel esté corriendo en `http://localhost:8000`
+- Configura CORS en Laravel para aceptar `http://localhost:5173`
+
+**Variables no se actualizan**
+- Reinicia el servidor (`Ctrl+C` → `npm run dev`)

@@ -11,7 +11,11 @@ const Login = () => {
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center space-x-3 mb-4">
+          <button
+            onClick={() => navigate('/')}
+            className="inline-flex items-center justify-center space-x-3 mb-4 hover:opacity-80 transition-opacity"
+            title="Volver al inicio"
+          >
             <div className="w-14 h-14 bg-blue-700 rounded-2xl flex items-center justify-center">
               <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.18l6 3.75v7.14l-6 3.75-6-3.75V7.93l6-3.75z"/>
@@ -19,7 +23,15 @@ const Login = () => {
               </svg>
             </div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">PEER-LEGAL</h1>
-          </div>
+          </button>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            <button
+              onClick={() => navigate('/')}
+              className="text-blue-700 dark:text-blue-400 hover:underline"
+            >
+              ← Volver al inicio
+            </button>
+          </p>
         </div>
 
         {/* Atajo al Dashboard si está autenticado */}

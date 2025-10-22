@@ -1,15 +1,56 @@
-# React + TypeScript + Vite
+# PEER-LEGAL
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sistema de análisis legal con IA para estudiantes de derecho y profesionales.
 
-Currently, two official plugins are available:
+## Instalación
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+cp .env.example .env
+# Edita .env con tus credenciales
+npm run dev
+```
 
-## React Compiler
+Ver [ENV_SETUP.md](./ENV_SETUP.md) para configuración de variables de entorno.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack Tecnológico
+
+- React 19 + TypeScript + Vite
+- Tailwind CSS v4
+- React Router DOM
+- Laravel (Backend)
+- Supabase
+- Gemini 1.5 (IA)
+
+## Características
+
+- Autenticación con roles (Estudiante/Profesional)
+- Dashboard con estadísticas
+- Gestión de casos (CRUD + análisis con IA)
+- Biblioteca de jurisprudencia
+- Filtros avanzados y exportación CSV
+- Dark mode
+- Responsive design
+
+## Estructura
+
+```
+src/
+├── components/     # Vistas principales
+├── Tables/         # Tablas reutilizables
+├── forms/          # Hooks de formularios
+├── services/       # Servicios de API
+├── config/         # Configuración (API, Supabase)
+└── context/        # Contextos (Theme)
+```
+
+## Scripts
+
+```bash
+npm run dev      # Desarrollo
+npm run build    # Producción
+npm run lint     # Linting
+```
 
 ## Expanding the ESLint configuration
 

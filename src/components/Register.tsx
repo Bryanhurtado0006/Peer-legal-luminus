@@ -11,7 +11,11 @@ const Register = () => {
       {/* Left Side - Info */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-700 p-12 items-center justify-center">
         <div className="max-w-lg">
-          <div className="flex items-center space-x-3 mb-8">
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center space-x-3 mb-8 hover:opacity-80 transition-opacity"
+            title="Volver al inicio"
+          >
             <div className="w-16 h-16 bg-blue-700 rounded-2xl flex items-center justify-center">
               <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.18l6 3.75v7.14l-6 3.75-6-3.75V7.93l6-3.75z"/>
@@ -19,7 +23,7 @@ const Register = () => {
               </svg>
             </div>
             <h1 className="text-3xl font-bold text-blue-900 dark:text-white">PEER-LEGAL</h1>
-          </div>
+          </button>
 
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
             Transforma tu práctica legal con IA
@@ -72,6 +76,31 @@ const Register = () => {
       {/* Right Side - Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white dark:bg-gray-900">
         <div className="w-full max-w-md">
+          {/* Logo móvil + enlace al inicio */}
+          <div className="lg:hidden text-center mb-6">
+            <button
+              onClick={() => navigate('/')}
+              className="inline-flex items-center justify-center space-x-2 mb-2 hover:opacity-80 transition-opacity"
+              title="Volver al inicio"
+            >
+              <div className="w-12 h-12 bg-blue-700 rounded-xl flex items-center justify-center">
+                <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.18l6 3.75v7.14l-6 3.75-6-3.75V7.93l6-3.75z"/>
+                  <path d="M11 11h2v6h-2v-6zm0-4h2v2h-2V7z"/>
+                </svg>
+              </div>
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">PEER-LEGAL</h1>
+            </button>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              <button
+                onClick={() => navigate('/')}
+                className="text-blue-700 dark:text-blue-400 hover:underline"
+              >
+                ← Volver al inicio
+              </button>
+            </p>
+          </div>
+
           {/* Atajo al Dashboard si está autenticado */}
           {isAuthenticated && (
             <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg">
@@ -116,6 +145,29 @@ const Register = () => {
               />
               {errors.fullName && (
                 <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.fullName.message}</p>
+              )}
+            </div>
+
+            {/* Tipo de Usuario */}
+            <div>
+              <label htmlFor="role" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
+                Tipo de Usuario
+              </label>
+              <select
+                {...register('role', {
+                  required: 'Debes seleccionar un tipo de usuario'
+                })}
+                id="role"
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                  errors.role ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                }`}
+              >
+                <option value="">Selecciona tu rol</option>
+                <option value="student">Estudiante (10 casos/día)</option>
+                <option value="professional">Profesional (50 casos/día)</option>
+              </select>
+              {errors.role && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.role.message}</p>
               )}
             </div>
 

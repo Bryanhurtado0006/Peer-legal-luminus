@@ -88,21 +88,15 @@ const LandingPage: React.FC = () => {
             argumentativas en minutos. Diseñado para estudiantes de derecho y abogados junior.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <button
               onClick={() => navigate('/register')}
-              className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-all inline-flex items-center justify-center gap-2"
+              className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-10 py-4 rounded-lg text-lg transition-all inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
             >
               Comenzar Ahora
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </button>
-            
-            <button
-              className="border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 font-semibold px-8 py-4 rounded-lg text-lg transition-all"
-            >
-              Ver Demostración
             </button>
           </div>
         </div>

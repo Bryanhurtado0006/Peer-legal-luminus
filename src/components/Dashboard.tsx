@@ -11,8 +11,15 @@ const Dashboard = () => {
     email: 'bryandreshurtado18@gmail.com'
   }
 
+  // Obtener rol del usuario desde localStorage
+  const userRole = localStorage.getItem('user_role') as 'student' | 'professional' || 'student'
+  const casesUsedToday = 0 // TODO: Obtener de la API
+  const dailyLimit = userRole === 'student' ? 10 : 50
+  const roleLabel = userRole === 'student' ? 'Estudiante' : 'Profesional'
+
   const handleLogout = () => {
     localStorage.removeItem('auth_token')
+    localStorage.removeItem('user_role')
     navigate('/login')
   }
 
@@ -67,7 +74,7 @@ const Dashboard = () => {
               </button>
 
               {/* User Info */}
-              <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
+              <div className="flex items-center space-x-3 pl-4 border-l border-gray-200 dark:border-gray-700">
                 <div className="text-right">
                   <p className="text-sm font-semibold text-gray-900 dark:text-white">{userData.username}</p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">{userData.email}</p>
@@ -76,7 +83,7 @@ const Dashboard = () => {
                 {/* Botón Logout */}
                 <button
                   onClick={handleLogout}
-                  className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                   title="Cerrar sesión"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,19 +100,35 @@ const Dashboard = () => {
       <main className="max-w-7xl mx-auto px-6 py-8">
         {/* Page Title */}
         <div className="mb-8">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">Dashboard</h2>
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white">Dashboard</h2>
+            <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+              <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span className="text-sm font-semibold text-blue-900 dark:text-blue-200">
+                {roleLabel} - {casesUsedToday}/{dailyLimit} casos hoy
+              </span>
+            </div>
+          </div>
           <p className="text-gray-600 dark:text-gray-400">Resumen de tus casos y análisis legales</p>
         </div>
 
         {/* Action Buttons */}
         <div className="flex gap-4 mb-8">
-          <button className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+          <button 
+            onClick={() => navigate('/casos')}
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+          >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             Ver Todos los Casos
           </button>
-          <button className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2">
+          <button 
+            onClick={() => navigate('/jurisprudencia')}
+            className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+          >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.18l6 3.75v7.14l-6 3.75-6-3.75V7.93l6-3.75z"/>
               <path d="M11 11h2v6h-2v-6zm0-4h2v2h-2V7z"/>
@@ -171,7 +194,12 @@ const Dashboard = () => {
                 <p className="text-sm text-gray-500 dark:text-gray-400">Tus últimos casos creados</p>
               </div>
             </div>
-            <button className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium">Ver Todos</button>
+            <button 
+              onClick={() => navigate('/casos')}
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium transition-colors"
+            >
+              Ver Todos
+            </button>
           </div>
 
           {/* Empty State */}
@@ -216,7 +244,10 @@ const Dashboard = () => {
           </div>
 
           {/* Explorar Jurisprudencia */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow cursor-pointer group">
+          <div 
+            onClick={() => navigate('/jurisprudencia')}
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow cursor-pointer group"
+          >
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-orange-200 transition-colors">
                 <svg className="w-6 h-6 text-orange-700" fill="currentColor" viewBox="0 0 24 24">

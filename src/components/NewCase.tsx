@@ -37,12 +37,13 @@ const NewCase = () => {
 
             <button
               onClick={() => navigate('/dashboard')}
-              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium flex items-center gap-2"
+              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white font-medium flex items-center gap-2 transition-colors"
+              title="Volver al dashboard"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              Volver
+              Volver al Dashboard
             </button>
           </div>
         </div>
@@ -56,25 +57,25 @@ const NewCase = () => {
             {/* Step 1 */}
             <div className="flex items-center">
               <div className={`flex items-center justify-center w-12 h-12 rounded-full ${
-                currentStep === 1 ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-600'
+                currentStep === 1 ? 'bg-blue-700 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
               } font-bold`}>
                 1
               </div>
               <div className="ml-3">
-                <p className={`font-semibold ${currentStep === 1 ? 'text-blue-700' : 'text-gray-600'}`}>
+                <p className={`font-semibold ${currentStep === 1 ? 'text-blue-700 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'}`}>
                   Información del Caso
                 </p>
-                <p className="text-sm text-gray-500">Detalles básicos</p>
+                <p className="text-sm text-gray-500 dark:text-gray-500">Detalles básicos</p>
               </div>
             </div>
 
             {/* Line */}
-            <div className={`h-1 w-32 mx-4 ${currentStep === 2 ? 'bg-blue-700' : 'bg-gray-200'}`}></div>
+            <div className={`h-1 w-32 mx-4 ${currentStep === 2 ? 'bg-blue-700 dark:bg-blue-500' : 'bg-gray-200 dark:bg-gray-700'}`}></div>
 
             {/* Step 2 */}
             <div className="flex items-center">
               <div className={`flex items-center justify-center w-12 h-12 rounded-full ${
-                currentStep === 2 ? 'bg-blue-700 text-white' : currentStep > 2 ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-600'
+                currentStep === 2 ? 'bg-blue-700 text-white' : currentStep > 2 ? 'bg-blue-700 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
               } font-bold`}>
                 {currentStep > 2 ? (
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -85,28 +86,28 @@ const NewCase = () => {
                 )}
               </div>
               <div className="ml-3">
-                <p className={`font-semibold ${currentStep === 2 ? 'text-blue-700' : 'text-gray-600'}`}>
+                <p className={`font-semibold ${currentStep === 2 ? 'text-blue-700 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400'}`}>
                   Evidencia
                 </p>
-                <p className="text-sm text-gray-500">Documentos y archivos</p>
+                <p className="text-sm text-gray-500 dark:text-gray-500">Documentos y archivos</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Form Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-8">
           {currentStep === 1 && (
             <>
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Información del Caso</h2>
-                <p className="text-gray-600">Proporciona los detalles completos de tu caso legal</p>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Información del Caso</h2>
+                <p className="text-gray-600 dark:text-gray-400">Proporciona los detalles completos de tu caso legal</p>
               </div>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 {/* Título del Caso */}
                 <div>
-                  <label htmlFor="title" className="block text-sm font-medium text-gray-900 mb-2">
+                  <label htmlFor="title" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                     Título del Caso <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -120,8 +121,8 @@ const NewCase = () => {
                     type="text"
                     id="title"
                     placeholder="Ej: Demanda por incumplimiento contractual"
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all ${
-                      errors.title ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 ${
+                      errors.title ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                     }`}
                   />
                   {errors.title && (
@@ -131,7 +132,7 @@ const NewCase = () => {
 
                 {/* Tipo de Caso */}
                 <div>
-                  <label htmlFor="caseType" className="block text-sm font-medium text-gray-900 mb-2">
+                  <label htmlFor="caseType" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                     Tipo de Caso <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -139,8 +140,8 @@ const NewCase = () => {
                       required: 'Debes seleccionar un tipo de caso'
                     })}
                     id="caseType"
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all ${
-                      errors.caseType ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
+                      errors.caseType ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                     }`}
                   >
                     <option value="">Selecciona el tipo de caso</option>
@@ -159,7 +160,7 @@ const NewCase = () => {
                 {/* Demandante y Demandado */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="plaintiff" className="block text-sm font-medium text-gray-900 mb-2">
+                    <label htmlFor="plaintiff" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                       Demandante
                     </label>
                     <input
@@ -167,12 +168,12 @@ const NewCase = () => {
                       type="text"
                       id="plaintiff"
                       placeholder="Nombre del demandante"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="defendant" className="block text-sm font-medium text-gray-900 mb-2">
+                    <label htmlFor="defendant" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                       Demandado
                     </label>
                     <input
@@ -180,27 +181,27 @@ const NewCase = () => {
                       type="text"
                       id="defendant"
                       placeholder="Nombre del demandado"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500"
                     />
                   </div>
                 </div>
 
                 {/* Fecha del Incidente */}
                 <div>
-                  <label htmlFor="incidentDate" className="block text-sm font-medium text-gray-900 mb-2">
+                  <label htmlFor="incidentDate" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                     Fecha del Incidente
                   </label>
                   <input
                     {...register('incidentDate')}
                     type="date"
                     id="incidentDate"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   />
                 </div>
 
                 {/* Descripción del Caso */}
                 <div>
-                  <label htmlFor="description" className="block text-sm font-medium text-gray-900 mb-2">
+                  <label htmlFor="description" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                     Descripción del Caso <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -214,8 +215,8 @@ const NewCase = () => {
                     id="description"
                     rows={6}
                     placeholder="Describe los hechos relevantes, las partes involucradas, y los puntos legales clave..."
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none ${
-                      errors.description ? 'border-red-500' : 'border-gray-300'
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 ${
+                      errors.description ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                     }`}
                   />
                   {errors.description && (
@@ -225,7 +226,7 @@ const NewCase = () => {
 
                 {/* Hechos Relevantes */}
                 <div>
-                  <label htmlFor="relevantFacts" className="block text-sm font-medium text-gray-900 mb-2">
+                  <label htmlFor="relevantFacts" className="block text-sm font-medium text-gray-900 dark:text-white mb-2">
                     Hechos Relevantes
                   </label>
                   <textarea
@@ -233,7 +234,7 @@ const NewCase = () => {
                     id="relevantFacts"
                     rows={6}
                     placeholder="Lista los hechos más importantes del caso en orden cronológico..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500"
                   />
                 </div>
 
@@ -270,13 +271,13 @@ const NewCase = () => {
           {currentStep === 2 && (
             <>
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">Evidencia</h2>
-                <p className="text-gray-600">Sube imágenes, videos, PDFs y documentos relevantes (opcional)</p>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Evidencia</h2>
+                <p className="text-gray-600 dark:text-gray-400">Sube imágenes, videos, PDFs y documentos relevantes (opcional)</p>
               </div>
 
               {/* Upload Area */}
               <div
-                className="border-2 border-dashed border-gray-300 rounded-xl p-12 text-center hover:border-blue-400 transition-colors cursor-pointer bg-gray-50"
+                className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-12 text-center hover:border-blue-400 dark:hover:border-blue-500 transition-colors cursor-pointer bg-gray-50 dark:bg-gray-700/50"
                 onClick={() => document.getElementById('file-upload')?.click()}
                 onDragOver={(e) => e.preventDefault()}
                 onDrop={(e) => {
@@ -285,15 +286,15 @@ const NewCase = () => {
                 }}
               >
                 <div className="flex flex-col items-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center mb-4">
+                    <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
                   </div>
-                  <p className="text-lg font-semibold text-gray-900 mb-2">
+                  <p className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                     Arrastra archivos aquí o haz clic para seleccionar
                   </p>
-                  <p className="text-sm text-gray-500 mb-6">Soporta imágenes, videos, PDFs y documentos</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Soporta imágenes, videos, PDFs y documentos</p>
                   <input
                     id="file-upload"
                     type="file"
@@ -304,7 +305,7 @@ const NewCase = () => {
                   />
                   <button
                     type="button"
-                    className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-white transition-colors"
+                    className="px-6 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-white dark:hover:bg-gray-800 transition-colors"
                     onClick={(e) => {
                       e.stopPropagation()
                       document.getElementById('file-upload')?.click()
@@ -318,30 +319,30 @@ const NewCase = () => {
               {/* Uploaded Files List */}
               {uploadedFiles.length > 0 && (
                 <div className="mt-8">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                     Archivos Subidos ({uploadedFiles.length})
                   </h3>
                   <div className="space-y-3">
                     {uploadedFiles.map((file) => (
                       <div
                         key={file.id}
-                        className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200"
+                        className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center">
+                            <svg className="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                             </svg>
                           </div>
                           <div>
-                            <p className="font-medium text-gray-900">{file.name}</p>
-                            <p className="text-sm text-gray-500">{formatFileSize(file.size)}</p>
+                            <p className="font-medium text-gray-900 dark:text-white">{file.name}</p>
+                            <p className="text-sm text-gray-500 dark:text-gray-400">{formatFileSize(file.size)}</p>
                           </div>
                         </div>
                         <button
                           type="button"
                           onClick={() => removeFile(file.id)}
-                          className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                          className="p-2 text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -358,7 +359,7 @@ const NewCase = () => {
                 <button
                   type="button"
                   onClick={previousStep}
-                  className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center gap-2"
+                  className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -371,7 +372,7 @@ const NewCase = () => {
                     type="button"
                     onClick={handleSubmit(onSaveDraft)}
                     disabled={isSubmitting}
-                    className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-medium hover:bg-gray-50 transition-colors disabled:opacity-50"
+                    className="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors disabled:opacity-50"
                   >
                     Guardar como Borrador
                   </button>

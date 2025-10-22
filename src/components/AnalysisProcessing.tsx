@@ -6,10 +6,10 @@ const AnalysisProcessing = () => {
   const [currentStep, setCurrentStep] = useState(0)
 
   const steps = [
-    { text: 'Analizando texto del caso...', duration: 2000 },
-    { text: 'Procesando evidencia visual con Gemini 1.5...', duration: 3000 },
-    { text: 'Buscando precedentes jurídicos...', duration: 2500 },
-    { text: 'Generando estrategias argumentales...', duration: 2000 }
+    { text: 'Agente Coordinador - Identificando elementos legales...', duration: 2000 },
+    { text: 'Agente Jurisprudencia - Buscando precedentes relevantes...', duration: 2500 },
+    { text: 'Agente Visual - Analizando evidencia multimedia...', duration: 3000 },
+    { text: 'Agente Argumentos - Generando líneas argumentales...', duration: 2000 }
   ]
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const AnalysisProcessing = () => {
             Analizando tu caso
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-center mb-8">
-            Gemini 1.5 está procesando la información
+            Sistema de agentes A2A procesando el caso
           </p>
 
           {/* Progress Bar */}

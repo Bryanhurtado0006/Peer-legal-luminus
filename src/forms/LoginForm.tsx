@@ -27,9 +27,12 @@ export const useLoginForm = () => {
         password: data.password
       })
 
-      // Guardar el token en localStorage
+      // Guardar el token y rol en localStorage
       if (response.data.token) {
         localStorage.setItem('auth_token', response.data.token)
+      }
+      if (response.data.user?.role) {
+        localStorage.setItem('user_role', response.data.user.role)
       }
 
       // Redirigir al dashboard

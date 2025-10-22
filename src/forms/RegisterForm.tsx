@@ -7,6 +7,7 @@ export interface RegisterFormData {
   email: string
   password: string
   confirmPassword: string
+  role: 'student' | 'professional'
 }
 
 export const useRegisterForm = () => {
@@ -31,12 +32,16 @@ export const useRegisterForm = () => {
         name: data.fullName,
         email: data.email,
         password: data.password,
-        password_confirmation: data.confirmPassword
+        password_confirmation: data.confirmPassword,
+        role: data.role
       })
 
-      // Guardar el token en localStorage
+      // Guardar el token y rol en localStorage
       if (response.data.token) {
         localStorage.setItem('auth_token', response.data.token)
+      }
+      if (response.data.user?.role) {
+        localStorage.setItem('user_role', response.data.user.role)
       }
 
       // Redirigir al dashboard
